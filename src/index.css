@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-obsidian: #101828;
+  --color-obsidian-hover: #1e293b;
+  --color-cobalt: #2563eb;
+  --color-cobalt-hover: #1d4ed8;
+  --color-amber-radiant: #f97316;
+  --color-amber-radiant-hover: #ea580c;
+  
+  --color-canvas: #f7f9fb;
+  --color-surface-card: #ffffff;
+  --color-surface-alt: #f8fafc;
+  --color-surface-inset: #f1f5f9;
+  
+  --color-ink-primary: #0f172a;
+  --color-ink-medium: #475569;
+  --color-ink-subdued: #94a3b8;
+  --color-line: #e2e8f0;
+}
+
+:root {
+  font-family: var(--font-sans);
+  color: var(--color-ink-primary);
+  background-color: var(--color-canvas);
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
