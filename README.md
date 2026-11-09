@@ -2,7 +2,7 @@
 
 Loja virtual desenvolvida em **React + TypeScript** como projeto final do módulo de Front-end da Digital College. O projeto segue a [documentação oficial da Digital Store](https://github.com/digitalcollegebr/projeto-digital-store) e o [design do Figma (Drip Store)](https://www.figma.com/design/nUk0ihM3x4u8JQtxUoAEJf/DRIP-STORE---DIGITAL-COLLEGE--Copy-?node-id=22-30&p=f).
 
-🔗 **Projeto no ar:** https://iel-front.vercel.app
+🔗 **Projeto no ar:** https://iel-front.vercel.app · API em https://iel-back.vercel.app ([IEL-BACK](https://github.com/paulinho121/IEL-BACK))
 
 ## Equipe
 
