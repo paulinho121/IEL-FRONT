@@ -84,7 +84,7 @@ export default function Header() {
         </form>
 
         {/* Área de redirecionamento + carrinho */}
-        <div className="ml-auto flex shrink-0 items-center gap-6 md:ml-0 lg:gap-8">
+        <div className="ml-auto flex shrink-0 items-center gap-6 lg:ml-0 lg:gap-8">
           {user ? (
             <>
               <span className="hidden items-center gap-2 text-base text-dark-gray-2 md:flex">

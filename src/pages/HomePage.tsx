@@ -18,7 +18,16 @@ const trending = products.slice(0, 8);
 export default function HomePage() {
   return (
     <Layout>
-      <Gallery images={slides} width="1440" height="681" showDots className="mx-auto" />
+      {/* No celular a proporção do desktop deixaria o banner com ~170px; a altura mínima recorta as laterais da foto */}
+      <Gallery
+        images={slides}
+        width="1440"
+        height="681"
+        showDots
+        className="mx-auto"
+        slideClassName="max-sm:min-h-[260px] sm:max-md:min-h-[320px]"
+      />
+
 
       <div className="mx-auto flex max-w-[1440px] flex-col gap-14 px-4 py-14 md:gap-20 md:px-10 xl:px-[100px] md:py-20">
         <Section title="Coleções em destaque" titleAlign="center">

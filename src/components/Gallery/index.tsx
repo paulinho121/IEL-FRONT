@@ -11,6 +11,8 @@ interface GalleryProps {
   showThumbs?: boolean;
   /** Bolinhas de posição abaixo do slide (usadas no banner da home, como no Figma). */
   showDots?: boolean;
+  /** Classes extras da área do slide, ex.: altura mínima no celular. */
+  slideClassName?: string;
 }
 
 const toPx = (value: string | number) => (typeof value === "number" ? `${value}px` : value.endsWith("px") ? value : `${value}px`);
@@ -23,6 +25,7 @@ export default function Gallery({
   radius = "0px",
   showThumbs = false,
   showDots = false,
+  slideClassName = "",
 }: GalleryProps) {
   const [current, setCurrent] = useState(0);
   const isFirst = current === 0;
@@ -38,7 +41,7 @@ export default function Gallery({
 
   return (
     <div className={className} style={{ width: String(width) === "100%" ? "100%" : toPx(width), maxWidth: "100%" }}>
-      <div className="relative overflow-hidden" style={{ aspectRatio, borderRadius: radius }}>
+      <div className={`relative w-full overflow-hidden ${slideClassName}`} style={{ aspectRatio, borderRadius: radius }}>
         <div
           className="flex h-full transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${current * 100}%)` }}

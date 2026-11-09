@@ -54,18 +54,20 @@ export default function ProductViewPage() {
         </nav>
 
         {/* key reinicia a galeria ao trocar de produto */}
-        <div className="flex flex-col gap-8 xl:flex-row xl:gap-10">
-          <Gallery
-            key={product.id}
-            images={product.images}
-            showThumbs
-            width="700"
-            height="570"
-            radius="4px"
-            className="shrink-0"
-          />
+        {/* Lado a lado a partir do notebook; a galeria ocupa 55% da linha, até os 700px do Figma */}
+        <div className="flex flex-col gap-8 lg:flex-row xl:gap-10">
+          <div className="w-full shrink-0 lg:w-[55%] lg:max-w-[700px]">
+            <Gallery
+              key={product.id}
+              images={product.images}
+              showThumbs
+              width="700"
+              height="570"
+              radius="4px"
+            />
+          </div>
 
-          <div className="flex-1">
+          <div className="min-w-0 flex-1">
             <BuyBox
               key={product.id}
               name={product.name}
