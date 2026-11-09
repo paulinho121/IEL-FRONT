@@ -4,7 +4,10 @@ import ProductListingPage from "./pages/ProductListingPage";
 import ProductViewPage from "./pages/ProductViewPage";
 import CategoriesPage from "./pages/CategoriesPage";
 import OrdersPage from "./pages/OrdersPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import RequireAuth from "./components/RequireAuth";
 import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
@@ -18,7 +21,16 @@ export default function App() {
         <Route path="/produtos" element={<Navigate to="/products" replace />} />
         <Route path="/product/:id" element={<ProductViewPage />} />
         <Route path="/categorias" element={<CategoriesPage />} />
-        <Route path="/meus-pedidos" element={<OrdersPage />} />
+        <Route
+          path="/meus-pedidos"
+          element={
+            <RequireAuth>
+              <OrdersPage />
+            </RequireAuth>
+          }
+        />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/cadastro" element={<RegisterPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

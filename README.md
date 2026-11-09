@@ -29,6 +29,15 @@ npm run dev
 
 O projeto abre em http://localhost:3000.
 
+### Ligação com a API (cadastro e login)
+
+O cadastro e o login usam a API do projeto de Back-end, [paulinho121/IEL-BACK](https://github.com/paulinho121/IEL-BACK). Para eles funcionarem:
+
+1. Suba a API seguindo o README dela (por padrão ela roda em http://localhost:3333).
+2. Se a API estiver em outro endereço, copie `.env.example` para `.env` e ajuste `VITE_API_URL`.
+
+Sem a API no ar, as telas de login e cadastro mostram o aviso "Não foi possível conectar ao servidor"; o restante da loja continua funcionando.
+
 Outros comandos:
 
 | Comando           | O que faz                                          |
@@ -46,7 +55,9 @@ Outros comandos:
 | `/produtos`     | —                       | Redireciona para `/products` (a documentação cita as duas rotas)          |
 | `/product/:id`  | `ProductViewPage`       | Galeria com miniaturas, buy box com opções e produtos recomendados        |
 | `/categorias`   | `CategoriesPage`        | Cards das categorias e marcas, que abrem a listagem já filtrada           |
-| `/meus-pedidos` | `OrdersPage`            | Pedidos de exemplo com status, itens, frete e total, filtráveis por aba   |
+| `/meus-pedidos` | `OrdersPage`            | Pedidos de exemplo com status, itens, frete e total; exige login          |
+| `/login`        | `LoginPage`             | Login pela API (`POST /v1/user/token`); volta para a página que pediu     |
+| `/cadastro`     | `RegisterPage`          | Cadastro pela API (`POST /v1/user`) e login automático em seguida         |
 
 Todas as páginas usam o componente `Layout`, que envolve o conteúdo (`children`) com o `Header` e o `Footer`.
 
@@ -68,8 +79,10 @@ src/
 │   ├── ProductOptions/ # Tamanhos e cores (props: options, shape, type, radius)
 │   ├── ScrollToTop/
 │   └── Section/       # Título com alinhamento, link opcional e children
+├── contexts/        # AuthContext: usuário logado, login, cadastro e logout
 ├── data/            # products.ts (produtos e filtros) e orders.ts (pedidos de exemplo)
-├── pages/             # Layout, HomePage, ProductListingPage, ProductViewPage, CategoriesPage, OrdersPage, NotFoundPage
+├── services/api.ts  # Cliente HTTP da API (IEL-BACK)
+├── pages/             # Layout, HomePage, ProductListingPage, ProductViewPage, CategoriesPage, OrdersPage, LoginPage, RegisterPage, NotFoundPage
 ├── utils/formatPrice.ts
 ├── App.tsx            # Rotas
 └── main.tsx
@@ -83,6 +96,7 @@ src/
 - **Filtrar por:** marca, categoria e gênero (checkbox) e estado (radio). O título da seção mostra o total de produtos encontrados.
 - **Galeria:** desliza entre imagens pelas setas, que ficam desabilitadas na primeira e na última imagem. As miniaturas trocam a imagem em destaque e a selecionada ganha borda de 2px na cor primária.
 - **Opções do produto:** tamanhos (quadrado com texto) e cores (círculo preenchido); a opção escolhida ganha borda na cor primária.
+- **Login e cadastro reais:** os formulários validam os dados, chamam a API e mostram os erros que ela devolve (ex.: e-mail já cadastrado). O token JWT fica salvo no navegador, então a sessão continua ao recarregar; o cabeçalho mostra "Olá, nome" e o botão Sair.
 - **Responsivo:** layout adaptado para celular, com menu lateral e filtros recolhíveis.
 
 ## Deploy

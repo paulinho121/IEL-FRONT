@@ -1,8 +1,9 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { Link, NavLink, useNavigate, useSearchParams } from "react-router-dom";
-import { Menu, Search, X } from "lucide-react";
+import { LogOut, Menu, Search, UserRound, X } from "lucide-react";
 import Logo from "../Logo";
 import miniCart from "../../assets/mini-cart.svg";
+import { useAuth } from "../../contexts/AuthContext";
 
 const navLinks = [
   { text: "Home", to: "/" },
@@ -16,6 +17,13 @@ export default function Header() {
   const [searchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("filter") ?? "");
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
+
+  function handleLogout() {
+    logout();
+    setMenuOpen(false);
+    navigate("/");
+  }
 
   // Mantém o campo em sincronia quando a URL muda (ex.: voltar no navegador)
   useEffect(() => {
@@ -77,15 +85,33 @@ export default function Header() {
 
         {/* Área de redirecionamento + carrinho */}
         <div className="ml-auto flex shrink-0 items-center gap-6 md:ml-0 lg:gap-8">
-          <Link to="/cadastro" className="hidden text-base text-dark-gray-2 underline decoration-dark-gray-2 md:inline">
-            Cadastre-se
-          </Link>
-          <Link
-            to="/login"
-            className="hidden h-10 w-[114px] items-center justify-center rounded bg-primary text-sm font-bold text-white transition-colors hover:bg-tertiary md:flex"
-          >
-            Entrar
-          </Link>
+          {user ? (
+            <>
+              <span className="hidden items-center gap-2 text-base text-dark-gray-2 md:flex">
+                <UserRound size={20} className="text-primary" />
+                Olá, <strong>{user.firstname}</strong>
+              </span>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="hidden h-10 items-center gap-2 rounded border border-primary px-4 text-sm font-bold text-primary transition-colors hover:bg-primary hover:text-white md:flex"
+              >
+                <LogOut size={16} /> Sair
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/cadastro" className="hidden text-base text-dark-gray-2 underline decoration-dark-gray-2 md:inline">
+                Cadastre-se
+              </Link>
+              <Link
+                to="/login"
+                className="hidden h-10 w-[114px] items-center justify-center rounded bg-primary text-sm font-bold text-white transition-colors hover:bg-tertiary md:flex"
+              >
+                Entrar
+              </Link>
+            </>
+          )}
           <img src={miniCart} alt="Carrinho de compras" className="size-6" />
         </div>
 
@@ -116,12 +142,37 @@ export default function Header() {
             ))}
           </ul>
           <hr className="my-6 border-light-gray-2" />
-          <Link to="/login" className="flex h-10 items-center justify-center rounded bg-primary text-sm font-bold text-white">
-            Entrar
-          </Link>
-          <Link to="/cadastro" className="mt-4 block text-center text-base text-dark-gray-2 underline">
-            Cadastre-se
-          </Link>
+          {user ? (
+            <>
+              <p className="mb-4 text-center text-base text-dark-gray-2">
+                Olá, <strong>{user.firstname}</strong>
+              </p>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="flex h-10 w-full items-center justify-center gap-2 rounded border border-primary text-sm font-bold text-primary"
+              >
+                <LogOut size={16} /> Sair
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                onClick={() => setMenuOpen(false)}
+                className="flex h-10 items-center justify-center rounded bg-primary text-sm font-bold text-white"
+              >
+                Entrar
+              </Link>
+              <Link
+                to="/cadastro"
+                onClick={() => setMenuOpen(false)}
+                className="mt-4 block text-center text-base text-dark-gray-2 underline"
+              >
+                Cadastre-se
+              </Link>
+            </>
+          )}
         </nav>
       )}
     </header>
