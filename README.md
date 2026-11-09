@@ -6,9 +6,7 @@ Loja virtual desenvolvida em **React + TypeScript** como projeto final do módul
 
 ## Equipe
 
-- Nome do integrante 1
-- Nome do integrante 2 _(opcional)_
-- Nome do integrante 3 _(opcional)_
+- Paulo Fernando (trabalho individual)
 
 ## Tecnologias
 
