@@ -1,6 +1,0 @@
-{
-  "name": "Atelier Tech — Flagship Hardware & Peripherals Showroom",
-  "description": "High-end flagship showroom and configurator for advanced consumer hardware, studio displays, and pro-grade peripherals.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}

@@ -1,0 +1,73 @@
+import Logo from "../Logo";
+import FooterInformations from "../FooterInformations";
+import facebook from "../../assets/facebook.svg";
+import instagram from "../../assets/instagram.svg";
+import twitter from "../../assets/twitter.svg";
+
+const socials = [
+  { name: "Facebook", icon: facebook, href: "https://facebook.com" },
+  { name: "Instagram", icon: instagram, href: "https://instagram.com" },
+  { name: "Twitter", icon: twitter, href: "https://twitter.com" },
+];
+
+const informations = [
+  { text: "Sobre Drip Store", link: "/about" },
+  { text: "Segurança", link: "/seguranca" },
+  { text: "Wishlist", link: "/wishlist" },
+  { text: "Blog", link: "/blog" },
+  { text: "Trabalhe conosco", link: "/trabalhe-conosco" },
+  { text: "Meus Pedidos", link: "/meus-pedidos" },
+];
+
+const categories = [
+  { text: "Camisetas", link: "/products?filter=camisetas" },
+  { text: "Calças", link: "/products?filter=calças" },
+  { text: "Bonés", link: "/products?filter=bonés" },
+  { text: "Headphones", link: "/products?filter=headphones" },
+  { text: "Tênis", link: "/products" },
+];
+
+export default function Footer() {
+  return (
+    <footer className="bg-dark-gray text-white">
+      <div className="mx-auto max-w-[1440px] px-4 pt-14 pb-8 md:px-10 xl:px-[100px] md:pt-[72px]">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,_1fr)_auto_auto_auto] lg:gap-16">
+          <div className="max-w-[310px]">
+            <Logo variant="footer" />
+            <p className="mt-8 text-base leading-7">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore.
+            </p>
+            <ul className="mt-8 flex items-center gap-6">
+              {socials.map((social) => (
+                <li key={social.name}>
+                  <a href={social.href} target="_blank" rel="noreferrer" aria-label={social.name}>
+                    <img src={social.icon} alt="" className="h-5 w-auto" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <FooterInformations title="Informação" informations={informations} />
+          <FooterInformations title="Categorias" informations={categories} />
+
+          <div>
+            <h3 className="mb-5 text-lg font-semibold">Contato</h3>
+            <address className="text-base leading-7 not-italic">
+              Av. Santos Dumont, 1510 - 1 andar -
+              <br />
+              Aldeota, Fortaleza - CE, 60150-161
+              <br />
+              <br />
+              (85) 3051-3411
+            </address>
+          </div>
+        </div>
+
+        <hr className="mt-12 border-dark-gray-3" />
+        <p className="mt-8 text-center text-sm">© {new Date().getFullYear()} Digital Store</p>
+      </div>
+    </footer>
+  );
+}
