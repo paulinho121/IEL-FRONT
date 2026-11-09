@@ -2,6 +2,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ProductListingPage from "./pages/ProductListingPage";
 import ProductViewPage from "./pages/ProductViewPage";
+import CategoriesPage from "./pages/CategoriesPage";
+import OrdersPage from "./pages/OrdersPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -15,6 +17,8 @@ export default function App() {
         {/* A documentação cita /produtos e /products; as duas levam à listagem */}
         <Route path="/produtos" element={<Navigate to="/products" replace />} />
         <Route path="/product/:id" element={<ProductViewPage />} />
+        <Route path="/categorias" element={<CategoriesPage />} />
+        <Route path="/meus-pedidos" element={<OrdersPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>

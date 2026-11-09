@@ -42,9 +42,11 @@ Outros comandos:
 | Rota            | Página                  | O que tem                                                                 |
 | --------------- | ----------------------- | ------------------------------------------------------------------------- |
 | `/`             | `HomePage`              | Slide de imagens, coleções em destaque e 8 produtos em alta               |
-| `/products`     | `ProductListingPage`    | Ordenação, filtros e listagem; recebe a busca do cabeçalho em `?filter=`  |
+| `/products`     | `ProductListingPage`    | Ordenação, filtros e listagem; aceita `?filter=`, `?category=` e `?brand=` |
 | `/produtos`     | —                       | Redireciona para `/products` (a documentação cita as duas rotas)          |
 | `/product/:id`  | `ProductViewPage`       | Galeria com miniaturas, buy box com opções e produtos recomendados        |
+| `/categorias`   | `CategoriesPage`        | Cards das categorias e marcas, que abrem a listagem já filtrada           |
+| `/meus-pedidos` | `OrdersPage`            | Pedidos de exemplo com status, itens, frete e total, filtráveis por aba   |
 
 Todas as páginas usam o componente `Layout`, que envolve o conteúdo (`children`) com o `Header` e o `Footer`.
 
@@ -66,8 +68,8 @@ src/
 │   ├── ProductOptions/ # Tamanhos e cores (props: options, shape, type, radius)
 │   ├── ScrollToTop/
 │   └── Section/       # Título com alinhamento, link opcional e children
-├── data/products.ts   # Produtos de exemplo e opções de filtro
-├── pages/             # Layout, HomePage, ProductListingPage, ProductViewPage, NotFoundPage
+├── data/            # products.ts (produtos e filtros) e orders.ts (pedidos de exemplo)
+├── pages/             # Layout, HomePage, ProductListingPage, ProductViewPage, CategoriesPage, OrdersPage, NotFoundPage
 ├── utils/formatPrice.ts
 ├── App.tsx            # Rotas
 └── main.tsx

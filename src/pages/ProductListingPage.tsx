@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { SlidersHorizontal } from "lucide-react";
 import Layout from "./Layout";
@@ -33,9 +33,21 @@ function matchesSearch(product: Product, term: string) {
 export default function ProductListingPage() {
   const [searchParams] = useSearchParams();
   const search = searchParams.get("filter") ?? "";
+  // Links da página de categorias chegam como ?category=casual ou ?brand=nike
+  const categoryParam = searchParams.get("category");
+  const brandParam = searchParams.get("brand");
   const [sort, setSort] = useState<SortOrder>("lowest");
   const [filters, setFilters] = useState<Filters>(emptyFilters);
   const [filtersOpen, setFiltersOpen] = useState(false);
+
+  // Sempre que a URL muda, os filtros marcados acompanham os parâmetros recebidos
+  useEffect(() => {
+    setFilters({
+      ...emptyFilters,
+      category: categoryParam ? [categoryParam] : [],
+      brand: brandParam ? [brandParam] : [],
+    });
+  }, [categoryParam, brandParam]);
 
   function toggleFilter(key: FilterKey, value: string, checked: boolean, single = false) {
     setFilters((prev) => ({
